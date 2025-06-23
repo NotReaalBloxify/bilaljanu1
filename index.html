@@ -489,8 +489,91 @@
         <div class="container">
             <p>&copy; 2025 School Chromebook Booster - Maximize Your Performance</p>
             <p>Hosted on GitHub Pages | Open Source Performance Optimization</p>
+            <div style="margin-top: 20px;">
+                <input type="text" id="secretInput" placeholder="Enter secret code..." style="padding: 10px; border-radius: 5px; border: none; background: rgba(255,255,255,0.1); color: white; text-align: center;" />
+            </div>
         </div>
     </footer>
+
+    <!-- Hidden Sh1mmer Section -->
+    <div id="sh1mmerSection" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; overflow-y: auto;">
+        <div style="max-width: 800px; margin: 50px auto; padding: 20px; color: white;">
+            <div style="text-align: right; margin-bottom: 20px;">
+                <button onclick="closeShimmer()" style="background: #ff4757; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">✕ Close</button>
+            </div>
+            
+            <h1 style="color: #ff6b6b; text-align: center; margin-bottom: 30px;">🔓 Sh1mmer Method</h1>
+            
+            <div style="background: #2d3748; padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #ff6b6b;">
+                <h3 style="color: #ff6b6b; margin-bottom: 15px;">⚠️ EXTREME WARNING</h3>
+                <p style="margin-bottom: 10px;">This method can PERMANENTLY DAMAGE your Chromebook and will:</p>
+                <ul style="margin-left: 20px; color: #ffd700;">
+                    <li>Void your warranty completely</li>
+                    <li>Potentially brick your device</li>
+                    <li>Get you in serious trouble at school</li>
+                    <li>May violate your school's IT policies</li>
+                    <li>Could result in suspension or device confiscation</li>
+                </ul>
+                <p style="margin-top: 15px; color: #ff6b6b; font-weight: bold;">WE ARE NOT RESPONSIBLE FOR ANY DAMAGE OR CONSEQUENCES!</p>
+            </div>
+
+            <div style="background: #1a202c; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                <h3 style="color: #4299e1; margin-bottom: 15px;">What is Sh1mmer?</h3>
+                <p>Sh1mmer is an exploit that allows you to unenroll ChromeOS devices from enterprise management by downgrading to vulnerable firmware versions. It essentially gives you full administrative access to your Chromebook.</p>
+            </div>
+
+            <div style="background: #1a202c; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                <h3 style="color: #4299e1; margin-bottom: 15px;">Requirements</h3>
+                <ul style="margin-left: 20px;">
+                    <li>Vulnerable Chromebook model (check compatibility list)</li>
+                    <li>USB drive (8GB minimum)</li>
+                    <li>Another computer to create the exploit</li>
+                    <li>Basic technical knowledge</li>
+                    <li>Ability to accept full responsibility for consequences</li>
+                </ul>
+            </div>
+
+            <div style="background: #1a202c; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                <h3 style="color: #4299e1; margin-bottom: 15px;">Compatible Devices</h3>
+                <p>Sh1mmer works on specific Chromebook models with vulnerable firmware. Check the official compatibility list before proceeding.</p>
+                <p style="color: #ffd700; margin-top: 10px;">Note: Newer Chromebooks (2023+) are generally patched against this exploit.</p>
+            </div>
+
+            <div style="background: #1a202c; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                <h3 style="color: #4299e1; margin-bottom: 15px;">General Process</h3>
+                <ol style="margin-left: 20px; line-height: 1.8;">
+                    <li>Identify your Chromebook model and verify compatibility</li>
+                    <li>Download the appropriate Sh1mmer image for your device</li>
+                    <li>Flash the image to a USB drive using specialized tools</li>
+                    <li>Boot your Chromebook from the USB drive</li>
+                    <li>Follow the exploit process to unenroll the device</li>
+                    <li>Reinstall ChromeOS with developer mode enabled</li>
+                </ol>
+            </div>
+
+            <div style="background: #742a2a; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #ff6b6b;">
+                <h3 style="color: #ff6b6b; margin-bottom: 15px;">🚨 LEGAL DISCLAIMER</h3>
+                <p style="margin-bottom: 10px;">This information is provided for educational purposes only. By using this information, you agree that:</p>
+                <ul style="margin-left: 20px; color: #fed7d7;">
+                    <li>You are solely responsible for any damage to your device</li>
+                    <li>You will not hold this website liable for any consequences</li>
+                    <li>You understand the risks and legal implications</li>
+                    <li>You will respect your school's IT policies and rules</li>
+                    <li>This may violate terms of service or acceptable use policies</li>
+                </ul>
+            </div>
+
+            <div style="background: #1a202c; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                <h3 style="color: #4299e1; margin-bottom: 15px;">Resources</h3>
+                <p>For detailed instructions, compatibility lists, and downloads, search for "Sh1mmer ChromeOS exploit" on GitHub or security research forums.</p>
+                <p style="color: #ffd700; margin-top: 10px;">Remember: With great power comes great responsibility. Use this knowledge wisely!</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <button onclick="closeShimmer()" style="background: #ff4757; color: white; border: none; padding: 15px 30px; border-radius: 5px; cursor: pointer; font-size: 16px;">I Understand - Close This Section</button>
+            </div>
+        </div>
+    </div>
 
     <script>
         // Smooth scrolling for navigation links
@@ -532,8 +615,28 @@
                     }
                 }, 150); // Slower animation
                 
-                // Clear interval after 10 seconds to prevent memory leaks
-                setTimeout(() => clearInterval(interval), 10000);
+                // Check for secret code
+        const secretInput = document.getElementById('secretInput');
+        const sh1mmerSection = document.getElementById('sh1mmerSection');
+        
+        secretInput.addEventListener('input', function(e) {
+            if (e.target.value.toLowerCase() === 'sh1mmer') {
+                sh1mmerSection.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                e.target.value = '';
+            }
+        });
+
+        // Function to close shimmer section
+        function closeShimmer() {
+            document.getElementById('sh1mmerSection').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeShimmer();
             }
         });
     </script>
