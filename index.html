@@ -1,362 +1,644 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>School Chromebook Booster</title>
-<style>
-  /* Basic styles for layout */
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #121212;
-    color: white;
-  }
-  header {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 15px 30px;
-    transition: background 0.3s ease;
-    z-index: 100;
-  }
-  h1, h2, h3 {
-    margin-top: 0;
-  }
-  .container {
-    max-width: 1000px;
-    margin: 100px auto 40px;
-    padding: 0 20px;
-  }
-  .section {
-    margin-bottom: 60px;
-  }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-  }
-  .card {
-    background: #1e1e2f;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
-  }
-  .chrome-flag {
-    background: #282c34;
-    padding: 10px;
-    margin: 8px 0;
-    border-radius: 5px;
-    font-family: monospace;
-    display: flex;
-    justify-content: space-between;
-  }
-  .flag-url {
-    color: #61dafb;
-  }
-  .tip {
-    margin-top: 10px;
-    font-style: italic;
-    color: #a0a0a0;
-  }
-  ul {
-    padding-left: 20px;
-  }
-  footer {
-    background: #1e1e2f;
-    text-align: center;
-    padding: 20px 10px;
-    font-size: 14px;
-    color: #999;
-  }
-  input#secretInput {
-    width: 250px;
-    font-size: 16px;
-    margin-top: 15px;
-    background: rgba(255,255,255,0.1);
-    border: none;
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-    outline: none;
-  }
-  .performance-meter {
-    background: #333;
-    border-radius: 5px;
-    width: 100%;
-    height: 20px;
-    overflow: hidden;
-    margin-top: 10px;
-  }
-  .meter-fill {
-    height: 100%;
-    background: #66aaff;
-    width: 0;
-    transition: width 0.3s ease;
-  }
-  /* Hidden shimmer section */
-  #sh1mmerSection {
-    display: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.95);
-    z-index: 1000;
-    overflow-y: auto;
-    padding: 50px 20px;
-    box-sizing: border-box;
-    color: white;
-    font-size: 16px;
-  }
-  #sh1mmerSection > div {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  #sh1mmerSection button {
-    background: #ff4757;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  /* Warning and info boxes */
-  .warning {
-    background: #742a2a;
-    border-left: 6px solid #ff6b6b;
-    padding: 15px;
-    margin-bottom: 20px;
-    font-weight: bold;
-    color: #ffd7d7;
-    border-radius: 5px;
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Chromebook Booster - Maximize Your Performance</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 0;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.6s both;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .section {
+            padding: 80px 0;
+            background: white;
+            margin: 20px 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #333;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 30px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .chrome-flag {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            border-left: 4px solid #4299e1;
+        }
+
+        .flag-url {
+            color: #63b3ed;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .warning {
+            background: linear-gradient(135deg, #fed7d7, #feb2b2);
+            border: 1px solid #fc8181;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            color: #742a2a;
+        }
+
+        .tip {
+            background: linear-gradient(135deg, #c6f6d5, #9ae6b4);
+            border: 1px solid #68d391;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            color: #22543d;
+        }
+
+        .performance-meter {
+            background: linear-gradient(90deg, #ff6b6b 0%, #feca57 50%, #48dbfb 100%);
+            height: 20px;
+            border-radius: 10px;
+            margin: 10px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .meter-fill {
+            height: 100%;
+            background: rgba(255,255,255,0.3);
+            animation: pulse 2s infinite;
+        }
+
+        footer {
+            background: rgba(0,0,0,0.8);
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            nav ul { flex-direction: column; gap: 10px; }
+            .header-content { flex-direction: column; }
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
-<header>
-  <h1>School Chromebook Booster</h1>
-</header>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">🚀 Chromebook Booster</div>
+                <nav>
+                    <ul>
+                        <li><a href="#speed">Speed Boost</a></li>
+                        <li><a href="#flags">Chrome Flags</a></li>
+                        <li><a href="#fps">Gaming FPS</a></li>
+                        <li><a href="#tips">Pro Tips</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
 
-<div class="container">
-  <section id="fps" class="section">
-    <h2>🎮 Gaming & FPS Optimization</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Browser Gaming Settings</h3>
-        <div class="chrome-flag">
-          <span class="flag-url">WebGL 2.0 Compute</span>
-          Set to: Enabled
+    <section class="hero">
+        <div class="container">
+            <h1>Supercharge Your School Chromebook</h1>
+            <p>Unlock hidden performance without extensions or admin access</p>
+            <a href="#speed" class="cta-button">Start Boosting Now</a>
         </div>
-        <div class="chrome-flag">
-          <span class="flag-url">Unsafe WebGPU</span>
-          Set to: Enabled (for advanced graphics)
-        </div>
-        <div class="tip">🎯 Perfect for browser games like Shell Shockers, Krunker.io, and 1v1.lol</div>
-      </div>
+    </section>
 
-      <div class="card">
-        <h3>Performance Tweaks</h3>
-        <ul>
-          <li>Lower in-game graphics settings</li>
-          <li>Close all other tabs while gaming</li>
-          <li>Use fullscreen mode (F11)</li>
-          <li>Disable Chrome notifications</li>
-          <li>Clear RAM by restarting Chrome periodically</li>
-        </ul>
-      </div>
+    <div class="container">
+        <section id="speed" class="section">
+            <h2>🌐 Internet Speed Optimization</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>DNS Configuration</h3>
+                    <p>Change your DNS settings to faster servers:</p>
+                    <div class="chrome-flag">
+                        <span class="flag-url">Settings → Advanced → Privacy → Use secure DNS</span>
+                        Cloudflare: 1.1.1.1<br>
+                        Google: 8.8.8.8<br>
+                        Quad9: 9.9.9.9
+                    </div>
+                    <div class="tip">💡 Cloudflare DNS typically offers the fastest speeds for most users</div>
+                </div>
 
-      <div class="card">
-        <h3>FPS Monitoring</h3>
-        <div class="chrome-flag">
-          <span class="flag-url">Show FPS counter</span>
-          Set to: Enabled (if available)
-        </div>
-        <p>Monitor your FPS in real-time to see performance improvements</p>
-        <div class="performance-meter">
-          <div class="meter-fill"></div>
-        </div>
-      </div>
+                <div class="card">
+                    <h3>Network Optimization</h3>
+                    <p>Optimize your connection settings:</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Close unnecessary tabs (each tab uses bandwidth)</li>
+                        <li>Use incognito mode for faster browsing</li>
+                        <li>Clear cache regularly (Ctrl+Shift+Delete)</li>
+                        <li>Disable auto-sync when not needed</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Bandwidth Management</h3>
+                    <p>Maximize available bandwidth:</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Pause Google Drive sync during browsing</li>
+                        <li>Use 480p instead of 1080p for videos</li>
+                        <li>Disable background app refresh</li>
+                        <li>Use WiFi over mobile hotspot when possible</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="flags" class="section">
+            <h2>⚡ Chrome Flags for Performance</h2>
+            <div class="warning">
+                <strong>⚠️ CRITICAL WARNING:</strong> NOT ALL FLAGS WILL BE AVAILABLE ON YOUR CHROMEBOOK! Some flags may not exist or could crash Chrome entirely. Only enable flags that appear in your chrome://flags page. If Chrome crashes, restart and reset flags immediately.
+            </div>
+            
+            <div class="grid">
+                <div class="card">
+                    <h3>Graphics & Rendering</h3>
+                    <div class="chrome-flag">
+                        <span class="flag-url">GPU Rasterization</span>
+                        Set to: Enabled
+                    </div>
+                    <div class="chrome-flag">
+                        <span class="flag-url">Zero-copy rasterizer</span>
+                        Set to: Enabled
+                    </div>
+                    <div class="chrome-flag">
+                        <span class="flag-url">Override software rendering list</span>
+                        Set to: Enabled
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Memory & CPU</h3>
+                    <div class="chrome-flag">
+                        <span class="flag-url">Max tiles for interest area</span>
+                        Set to: 512
+                    </div>
+                    <div class="chrome-flag">
+                        <span class="flag-url">Experimental Web Platform features</span>
+                        Set to: Enabled
+                    </div>
+                    <div class="chrome-flag">
+                        <span class="flag-url">Experimental QUIC protocol</span>
+                        Set to: Enabled
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Scrolling & Animation</h3>
+                    <div class="chrome-flag">
+                        <span class="flag-url">Smooth Scrolling</span>
+                        Set to: Enabled
+                    </div>
+                    <div class="chrome-flag">
+                        <span class="flag-url">Experimental canvas features</span>
+                        Set to: Enabled
+                    </div>
+                    <div class="chrome-flag">
+                        <span class="flag-url">Accelerated 2D canvas</span>
+                        Set to: Disabled (if experiencing issues)
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="fps" class="section">
+            <h2>🎮 Gaming & FPS Optimization</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Browser Gaming Settings</h3>
+                    <div class="chrome-flag">
+                        <span class="flag-url">WebGL 2.0 Compute</span>
+                        Set to: Enabled
+                    </div>
+                    <div class="chrome-flag">
+                        <span class="flag-url">Unsafe WebGPU</span>
+                        Set to: Enabled (for advanced graphics)
+                    </div>
+                    <div class="tip">🎯 Perfect for browser games like Shell Shockers, Krunker.io, and 1v1.lol</div>
+                </div>
+
+                <div class="card">
+                    <h3>Performance Tweaks</h3>
+                    <ul style="margin-left: 20px;">
+                        <li>Lower in-game graphics settings</li>
+                        <li>Close all other tabs while gaming</li>
+                        <li>Use fullscreen mode (F11)</li>
+                        <li>Disable Chrome notifications</li>
+                        <li>Clear RAM by restarting Chrome periodically</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>FPS Monitoring</h3>
+                    <div class="chrome-flag">
+                        <span class="flag-url">Show FPS counter</span>
+                        Set to: Enabled (if available)
+                    </div>
+                    <p>Monitor your FPS in real-time to see performance improvements</p>
+                    <div class="performance-meter">
+                        <div class="meter-fill"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tips" class="section">
+            <h2>💡 Pro Tips & Advanced Tweaks</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>System Optimization</h3>
+                    <ul style="margin-left: 20px;">
+                        <li><strong>Restart Weekly:</strong> Keep your Chromebook fresh</li>
+                        <li><strong>Storage Management:</strong> Keep 15% free space minimum</li>
+                        <li><strong>Update Regularly:</strong> Latest Chrome OS versions are faster</li>
+                        <li><strong>Power Settings:</strong> Use 'Best Performance' mode when plugged in</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Hidden Chrome URLs</h3>
+                    <div class="chrome-flag">
+                        <span class="flag-url">chrome://system/</span>
+                        System diagnostics and info
+                    </div>
+                    <div class="chrome-flag">
+                        <span class="flag-url">chrome://gpu/</span>
+                        Graphics performance details
+                    </div>
+                    <div class="chrome-flag">
+                        <span class="flag-url">chrome://memory-internals/</span>
+                        Memory usage breakdown
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Extension Alternatives</h3>
+                    <p>Since extensions are blocked, use these built-in features:</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>Dark Mode:</strong> chrome://settings/appearance</li>
+                        <li><strong>Ad Blocking:</strong> Enable "Block ads on abusive sites"</li>
+                        <li><strong>Password Manager:</strong> Built-in Chrome passwords</li>
+                        <li><strong>PDF Viewer:</strong> Chrome's native PDF support</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Keyboard Shortcuts</h3>
+                    <ul style="margin-left: 20px;">
+                        <li><strong>Ctrl + Shift + T:</strong> Reopen closed tab</li>
+                        <li><strong>Ctrl + Shift + N:</strong> Incognito mode</li>
+                        <li><strong>Ctrl + Shift + Delete:</strong> Clear browsing data</li>
+                        <li><strong>Ctrl + L:</strong> Jump to address bar</li>
+                        <li><strong>Alt + Tab:</strong> Switch between apps</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>Emergency Reset</h3>
+                    <div class="warning">
+                        <strong>🚨 EMERGENCY RESET INSTRUCTIONS:</strong><br>
+                        If your Chromebook becomes unstable or Chrome keeps crashing after applying these tweaks:
+                    </div>
+                    <div class="chrome-flag">
+                        <span class="flag-url">Method 1: Reset all flags</span>
+                        Go to chrome://flags and click "Reset all to default" at the top
+                    </div>
+                    <div class="chrome-flag">
+                        <span class="flag-url">Method 2: System reset</span>
+                        Press Ctrl + Alt + Shift + R for a full system reset
+                    </div>
+                    <div class="chrome-flag">
+                        <span class="flag-url">Method 3: Safe mode</span>
+                        If Chrome won't start, hold Ctrl while clicking Chrome icon
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>School Network Tips</h3>
+                    <ul style="margin-left: 20px;">
+                        <li>Try different WiFi networks if available</li>
+                        <li>Use mobile hotspot for important tasks</li>
+                        <li>Work during off-peak hours when possible</li>
+                        <li>Download offline content when connection is good</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
     </div>
-  </section>
 
-  <section id="tips" class="section">
-    <h2>💡 Pro Tips & Advanced Tweaks</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>System Optimization</h3>
-        <ul>
-          <li><strong>Restart Weekly:</strong> Keep your Chromebook fresh</li>
-          <li><strong>Storage Management:</strong> Keep 15% free space minimum</li>
-          <li><strong>Update Regularly:</strong> Latest Chrome OS versions are faster</li>
-          <li><strong>Power Settings:</strong> Use 'Best Performance' mode when plugged in</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3>Hidden Chrome URLs</h3>
-        <div class="chrome-flag">
-          <span class="flag-url">chrome://system/</span>
-          System diagnostics and info
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 School Chromebook Booster - Maximize Your Performance</p>
+            <p>Hosted on GitHub Pages | Open Source Performance Optimization</p>
+            <div style="margin-top: 20px;">
+                <input type="text" id="secretInput" placeholder="Enter secret code..." style="padding: 10px; border-radius: 5px; border: none; background: rgba(255,255,255,0.1); color: white; text-align: center;" />
+            </div>
         </div>
-        <div class="chrome-flag">
-          <span class="flag-url">chrome://gpu/</span>
-          Graphics performance details
-        </div>
-        <div class="chrome-flag">
-          <span class="flag-url">chrome://memory-internals/</span>
-          Memory usage breakdown
-        </div>
-      </div>
+    </footer>
 
-      <div class="card">
-        <h3>Extension Alternatives</h3>
-        <p>Since extensions are blocked, use these built-in features:</p>
-        <ul>
-          <li><strong>Dark Mode:</strong> chrome://settings/appearance</li>
-          <li><strong>Ad Blocking:</strong> Enable "Block ads on abusive sites"</li>
-          <li><strong>Password Manager:</strong> Built-in Chrome passwords</li>
-          <li><strong>PDF Viewer:</strong> Chrome's native PDF support</li>
-        </ul>
-      </div>
+    <!-- Hidden Sh1mmer Section -->
+    <div id="sh1mmerSection" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; overflow-y: auto;">
+        <div style="max-width: 800px; margin: 50px auto; padding: 20px; color: white;">
+            <div style="text-align: right; margin-bottom: 20px;">
+                <button onclick="closeShimmer()" style="background: #ff4757; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">✕ Close</button>
+            </div>
+            
+            <h1 style="color: #ff6b6b; text-align: center; margin-bottom: 30px;">🔓 Sh1mmer Method</h1>
+            
+            <div style="background: #2d3748; padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #ff6b6b;">
+                <h3 style="color: #ff6b6b; margin-bottom: 15px;">⚠️ EXTREME WARNING</h3>
+                <p style="margin-bottom: 10px;">This method can PERMANENTLY DAMAGE your Chromebook and will:</p>
+                <ul style="margin-left: 20px; color: #ffd700;">
+                    <li>Void your warranty completely</li>
+                    <li>Potentially brick your device</li>
+                    <li>Get you in serious trouble at school</li>
+                    <li>May violate your school's IT policies</li>
+                    <li>Could result in suspension or device confiscation</li>
+                </ul>
+                <p style="margin-top: 15px; color: #ff6b6b; font-weight: bold;">WE ARE NOT RESPONSIBLE FOR ANY DAMAGE OR CONSEQUENCES!</p>
+            </div>
 
-      <div class="card">
-        <h3>Keyboard Shortcuts</h3>
-        <ul>
-          <li><strong>Ctrl + Shift + T:</strong> Reopen closed tab</li>
-          <li><strong>Ctrl + Shift + N:</strong> Incognito mode</li>
-          <li><strong>Ctrl + Shift + Delete:</strong> Clear browsing data</li>
-          <li><strong>Ctrl + L:</strong> Jump to address bar</li>
-          <li><strong>Alt + Tab:</strong> Switch between apps</li>
-        </ul>
-      </div>
+            <div style="background: #1a202c; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                <h3 style="color: #4299e1; margin-bottom: 15px;">What is Sh1mmer?</h3>
+                <p>Sh1mmer is an exploit that allows you to unenroll ChromeOS devices from enterprise management by downgrading to vulnerable firmware versions. It essentially gives you full administrative access to your Chromebook.</p>
+            </div>
 
-      <div class="card">
-        <h3>Emergency Reset</h3>
-        <div class="warning">
-          🚨 EMERGENCY RESET INSTRUCTIONS:<br>
-          If your Chromebook becomes unstable or Chrome keeps crashing after applying these tweaks:
+            <div style="background: #1a202c; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                <h3 style="color: #4299e1; margin-bottom: 15px;">Requirements</h3>
+                <ul style="margin-left: 20px;">
+                    <li>Vulnerable Chromebook model (check compatibility list)</li>
+                    <li>USB drive (8GB minimum)</li>
+                    <li>Another computer to create the exploit</li>
+                    <li>Basic technical knowledge</li>
+                    <li>Ability to accept full responsibility for consequences</li>
+                </ul>
+            </div>
+
+            <div style="background: #1a202c; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                <h3 style="color: #4299e1; margin-bottom: 15px;">Compatible Devices</h3>
+                <p>Sh1mmer works on specific Chromebook models with vulnerable firmware. Check the official compatibility list before proceeding.</p>
+                <p style="color: #ffd700; margin-top: 10px;">Note: Newer Chromebooks (2023+) are generally patched against this exploit.</p>
+            </div>
+
+            <div style="background: #1a202c; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                <h3 style="color: #4299e1; margin-bottom: 15px;">General Process</h3>
+                <ol style="margin-left: 20px; line-height: 1.8;">
+                    <li>Identify your Chromebook model and verify compatibility</li>
+                    <li>Download the appropriate Sh1mmer image for your device</li>
+                    <li>Flash the image to a USB drive using specialized tools</li>
+                    <li>Boot your Chromebook from the USB drive</li>
+                    <li>Follow the exploit process to unenroll the device</li>
+                    <li>Reinstall ChromeOS with developer mode enabled</li>
+                </ol>
+            </div>
+
+            <div style="background: #742a2a; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #ff6b6b;">
+                <h3 style="color: #ff6b6b; margin-bottom: 15px;">🚨 LEGAL DISCLAIMER</h3>
+                <p style="margin-bottom: 10px;">This information is provided for educational purposes only. By using this information, you agree that:</p>
+                <ul style="margin-left: 20px; color: #fed7d7;">
+                    <li>You are solely responsible for any damage to your device</li>
+                    <li>You will not hold this website liable for any consequences</li>
+                    <li>You understand the risks and legal implications</li>
+                    <li>You will respect your school's IT policies and rules</li>
+                    <li>This may violate terms of service or acceptable use policies</li>
+                </ul>
+            </div>
+
+            <div style="background: #1a202c; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                <h3 style="color: #4299e1; margin-bottom: 15px;">Resources</h3>
+                <p>For detailed instructions, compatibility lists, and downloads, search for "Sh1mmer ChromeOS exploit" on GitHub or security research forums.</p>
+                <p style="color: #ffd700; margin-top: 10px;">Remember: With great power comes great responsibility. Use this knowledge wisely!</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <button onclick="closeShimmer()" style="background: #ff4757; color: white; border: none; padding: 15px 30px; border-radius: 5px; cursor: pointer; font-size: 16px;">I Understand - Close This Section</button>
+            </div>
         </div>
-        <div class="chrome-flag">
-          <span class="flag-url">Method 1: Reset all flags</span>
-          Go to chrome://flags and click "Reset all to default" at the top
-        </div>
-        <div class="chrome-flag">
-          <span class="flag-url">Method 2: System reset</span>
-          Press Ctrl + Alt + Shift + R for a full system reset
-        </div>
-        <div class="chrome-flag">
-          <span class="flag-url">Method 3: Safe mode</span>
-          If Chrome won't start, hold Ctrl while clicking Chrome icon
-        </div>
-      </div>
-
-      <div class="card">
-        <h3>School Network Tips</h3>
-        <ul>
-          <li>Try different WiFi networks if available</li>
-          <li>Use mobile hotspot for important tasks</li>
-          <li>Work during off-peak hours when possible</li>
-          <li>Download offline content when connection is good</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-</div>
-
-<footer>
-  <div class="container">
-    <p>&copy; 2025 School Chromebook Booster - Maximize Your Performance</p>
-    <p>Hosted on GitHub Pages | Open Source Performance Optimization</p>
-    <div>
-      <input type="text" id="secretInput" placeholder="Enter secret code..." autocomplete="off" />
-    </div>
-  </div>
-</footer>
-
-<!-- Hidden Sh1mmer Section -->
-<div id="sh1mmerSection" tabindex="-1" aria-hidden="true">
-  <div>
-    <div style="text-align: right; margin-bottom: 20px;">
-      <button onclick="closeShimmer()" aria-label="Close Sh1mmer Section">✕ Close</button>
     </div>
 
-    <h1 style="color: #ff6b6b; text-align: center; margin-bottom: 30px;">🔓 Sh1mmer Method</h1>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
 
-    <div style="background: #2d3748; padding: 20px; border-radius: 10px; margin-bottom: 20px; border-left: 4px solid #ff6b6b;">
-      <h3 style="color: #ff6b6b; margin-bottom: 15px;">⚠️ EXTREME WARNING</h3>
-      <p>This method can <strong>PERMANENTLY DAMAGE</strong> your Chromebook and will:</p>
-      <ul style="margin-left: 20px; color: #ffd700;">
-        <li>Void your warranty completely</li>
-        <li>Potentially brick your device</li>
-        <li>Get you in serious trouble at school</li>
-        <li>May violate your school's IT policies</li>
-        <li>Could result in suspension or device confiscation</li>
-      </ul>
-      <p style="margin-top: 15px; color: #ff6b6b; font-weight: bold;">WE ARE NOT RESPONSIBLE FOR ANY DAMAGE OR CONSEQUENCES!</p>
-    </div>
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(102, 126, 234, 0.95)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.1)';
+            }
+        });
 
-    <div style="background: #1a202c; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
-      <h3 style="color: #4299e1; margin-bottom: 15px;">What is Sh1mmer?</h3>
-      <p>Sh1mmer is an exploit that allows you to unenroll ChromeOS devices from enterprise management by downgrading to vulnerable firmware versions. It essentially gives you full control over your Chromebook at the firmware level.</p>
-      <p><strong>WARNING:</strong> Using Sh1mmer is highly technical and risky. It is intended for advanced users only who understand the implications and risks.</p>
-    </div>
+        // Performance meter animation - Fixed to prevent crashes
+        const meters = document.querySelectorAll('.performance-meter');
+        meters.forEach((meter, index) => {
+            const fill = meter.querySelector('.meter-fill');
+            if (fill) {
+                let width = 0;
+                const interval = setInterval(() => {
+                    if (width >= 85) {
+                        clearInterval(interval);
+                    } else {
+                        width += Math.random() * 2 + 1; // More controlled animation
+                        fill.style.width = Math.min(width, 85) + '%';
+                    }
+                }, 150); // Slower animation
+                
+                // Check for secret code
+        const secretInput = document.getElementById('secretInput');
+        const sh1mmerSection = document.getElementById('sh1mmerSection');
+        
+        secretInput.addEventListener('input', function(e) {
+            if (e.target.value.toLowerCase() === 'sh1mmer') {
+                sh1mmerSection.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                e.target.value = '';
+            }
+        });
 
-    <div style="background: #1a202c; padding: 20px; border-radius: 10px;">
-      <h3 style="color: #4299e1; margin-bottom: 15px;">How Does It Work?</h3>
-      <ul>
-        <li>Downgrades firmware to a vulnerable version</li>
-        <li>Bypasses enterprise enrollment and restrictions</li>
-        <li>Enables flashing custom firmware or operating systems</li>
-        <li>Can be detected and blocked by school administrators</li>
-      </ul>
-    </div>
-  </div>
-</div>
+        // Function to close shimmer section
+        function closeShimmer() {
+            document.getElementById('sh1mmerSection').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
 
-<script>
-  // Animate the performance meter bar on load
-  document.addEventListener('DOMContentLoaded', () => {
-    const meterFill = document.querySelector('.meter-fill');
-    let width = 0;
-    const maxWidth = 80; // Example FPS percentage
-
-    function animate() {
-      if(width < maxWidth) {
-        width++;
-        meterFill.style.width = width + '%';
-        requestAnimationFrame(animate);
-      }
-    }
-    animate();
-  });
-
-  // Secret code logic for 'sh1mmer'
-  const secretInput = document.getElementById('secretInput');
-  const sh1mmerSection = document.getElementById('sh1mmerSection');
-
-  secretInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      const val = secretInput.value.trim().toLowerCase();
-      if (val === 'sh1mmer') {
-        openShimmer();
-        secretInput.value = '';
-      }
-    }
-  });
-
-  function openShimmer() {
-    sh1mmerSection.style.display = 'block';
-    sh1mmerSection.setAttribute('aria-hidden', 'false');
-    sh1mmerSection.focus();
-  }
-
-  function closeShimmer() {
-    sh1mmerSection.style.display = 'none';
-    sh1mmerSection.setAttribute('aria-hidden', 'true');
-    secretInput.focus();
-  }
-</script>
+        // Close on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeShimmer();
+            }
+        });
+    </script>
 </body>
 </html>
