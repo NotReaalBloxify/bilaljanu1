@@ -16,6 +16,7 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #333;
             line-height: 1.6;
+            min-height: 100vh;
         }
 
         .container {
@@ -27,16 +28,19 @@
         header {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             padding: 20px 0;
             position: sticky;
             top: 0;
             z-index: 100;
+            transition: background 0.3s ease;
         }
 
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .logo {
@@ -50,6 +54,7 @@
             display: flex;
             list-style: none;
             gap: 30px;
+            flex-wrap: wrap;
         }
 
         nav a {
@@ -59,6 +64,7 @@
             transition: all 0.3s ease;
             padding: 8px 16px;
             border-radius: 20px;
+            white-space: nowrap;
         }
 
         nav a:hover {
@@ -156,6 +162,15 @@
             font-size: 1.3rem;
         }
 
+        .card ul {
+            margin: 10px 0;
+        }
+
+        .card li {
+            margin: 5px 0;
+            line-height: 1.5;
+        }
+
         .chrome-flag {
             background: #2d3748;
             color: #e2e8f0;
@@ -164,6 +179,8 @@
             margin: 15px 0;
             font-family: 'Courier New', monospace;
             border-left: 4px solid #4299e1;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .flag-url {
@@ -203,6 +220,8 @@
         .meter-fill {
             height: 100%;
             background: rgba(255,255,255,0.3);
+            width: 0%;
+            transition: width 0.3s ease;
             animation: pulse 2s infinite;
         }
 
@@ -212,6 +231,91 @@
             text-align: center;
             padding: 40px 0;
             margin-top: 40px;
+        }
+
+        #secretInput {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            text-align: center;
+            width: 250px;
+            max-width: 90%;
+        }
+
+        #secretInput::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Hidden Shimmer Section Styles */
+        .shimmer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .shimmer-content {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            color: white;
+        }
+
+        .shimmer-close-btn {
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .shimmer-close-btn:hover {
+            background: #ff3742;
+        }
+
+        .shimmer-box {
+            background: #2d3748;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #ff6b6b;
+        }
+
+        .shimmer-box.info {
+            background: #1a202c;
+            border-left-color: #4299e1;
+        }
+
+        .shimmer-box.danger {
+            background: #742a2a;
+            border: 2px solid #ff6b6b;
+        }
+
+        .shimmer-resource {
+            background: #2d3748;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .shimmer-resource h4 {
+            color: #63b3ed;
+            margin-bottom: 10px;
+        }
+
+        .shimmer-resource a {
+            color: #4fd1c7;
+            text-decoration: underline;
+            word-break: break-all;
         }
 
         @keyframes fadeInUp {
@@ -231,10 +335,56 @@
         }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            nav ul { flex-direction: column; gap: 10px; }
-            .header-content { flex-direction: column; }
-            .grid { grid-template-columns: 1fr; }
+            .hero h1 { 
+                font-size: 2.5rem; 
+            }
+            
+            nav ul { 
+                flex-direction: column; 
+                gap: 10px;
+                align-items: center;
+            }
+            
+            .header-content { 
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .grid { 
+                grid-template-columns: 1fr; 
+            }
+
+            .section {
+                padding: 40px 0;
+                margin: 10px 0;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .shimmer-content {
+                margin: 20px auto;
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 40px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
         }
     </style>
 </head>
@@ -282,7 +432,7 @@
                 <div class="card">
                     <h3>Network Optimization</h3>
                     <p>Optimize your connection settings:</p>
-                    <ul style="margin-left: 20px; margin-top: 10px;">
+                    <ul>
                         <li>Close unnecessary tabs (each tab uses bandwidth)</li>
                         <li>Use incognito mode for faster browsing</li>
                         <li>Clear cache regularly (Ctrl+Shift+Delete)</li>
@@ -293,7 +443,7 @@
                 <div class="card">
                     <h3>Bandwidth Management</h3>
                     <p>Maximize available bandwidth:</p>
-                    <ul style="margin-left: 20px; margin-top: 10px;">
+                    <ul>
                         <li>Pause Google Drive sync during browsing</li>
                         <li>Use 480p instead of 1080p for videos</li>
                         <li>Disable background app refresh</li>
@@ -378,7 +528,7 @@
 
                 <div class="card">
                     <h3>Performance Tweaks</h3>
-                    <ul style="margin-left: 20px;">
+                    <ul>
                         <li>Lower in-game graphics settings</li>
                         <li>Close all other tabs while gaming</li>
                         <li>Use fullscreen mode (F11)</li>
@@ -406,7 +556,7 @@
             <div class="grid">
                 <div class="card">
                     <h3>System Optimization</h3>
-                    <ul style="margin-left: 20px;">
+                    <ul>
                         <li><strong>Restart Weekly:</strong> Keep your Chromebook fresh</li>
                         <li><strong>Storage Management:</strong> Keep 15% free space minimum</li>
                         <li><strong>Update Regularly:</strong> Latest Chrome OS versions are faster</li>
@@ -433,7 +583,7 @@
                 <div class="card">
                     <h3>Extension Alternatives</h3>
                     <p>Since extensions are blocked, use these built-in features:</p>
-                    <ul style="margin-left: 20px; margin-top: 10px;">
+                    <ul>
                         <li><strong>Dark Mode:</strong> chrome://settings/appearance</li>
                         <li><strong>Ad Blocking:</strong> Enable "Block ads on abusive sites"</li>
                         <li><strong>Password Manager:</strong> Built-in Chrome passwords</li>
@@ -443,7 +593,7 @@
 
                 <div class="card">
                     <h3>Keyboard Shortcuts</h3>
-                    <ul style="margin-left: 20px;">
+                    <ul>
                         <li><strong>Ctrl + Shift + T:</strong> Reopen closed tab</li>
                         <li><strong>Ctrl + Shift + N:</strong> Incognito mode</li>
                         <li><strong>Ctrl + Shift + Delete:</strong> Clear browsing data</li>
@@ -474,7 +624,7 @@
 
                 <div class="card">
                     <h3>School Network Tips</h3>
-                    <ul style="margin-left: 20px;">
+                    <ul>
                         <li>Try different WiFi networks if available</li>
                         <li>Use mobile hotspot for important tasks</li>
                         <li>Work during off-peak hours when possible</li>
@@ -490,21 +640,21 @@
             <p>&copy; 2025 School Chromebook Booster - Maximize Your Performance</p>
             <p>Hosted on GitHub Pages | Open Source Performance Optimization</p>
             <div style="margin-top: 20px;">
-                <input type="text" id="secretInput" placeholder="Enter secret code..." style="padding: 10px; border-radius: 5px; border: none; background: rgba(255,255,255,0.1); color: white; text-align: center;" />
+                <input type="text" id="secretInput" placeholder="Enter secret code..." autocomplete="off" />
             </div>
         </div>
     </footer>
 
     <!-- Hidden Sh1mmer Section -->
-    <div id="sh1mmerSection" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; overflow-y: auto;">
-        <div style="max-width: 800px; margin: 50px auto; padding: 20px; color: white;">
+    <div id="sh1mmerSection" class="shimmer-overlay">
+        <div class="shimmer-content">
             <div style="text-align: right; margin-bottom: 20px;">
-                <button onclick="closeShimmer()" style="background: #ff4757; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">✕ Close</button>
+                <button type="button" class="shimmer-close-btn" onclick="closeShimmer()">✕ Close</button>
             </div>
             
             <h1 style="color: #ff6b6b; text-align: center; margin-bottom: 30px;">🔓 Sh1mmer Method</h1>
             
-            <div style="background: #2d3748; padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #ff6b6b;">
+            <div class="shimmer-box">
                 <h3 style="color: #ff6b6b; margin-bottom: 15px;">⚠️ EXTREME WARNING</h3>
                 <p style="margin-bottom: 10px;">This method can PERMANENTLY DAMAGE your Chromebook and will:</p>
                 <ul style="margin-left: 20px; color: #ffd700;">
@@ -517,12 +667,12 @@
                 <p style="margin-top: 15px; color: #ff6b6b; font-weight: bold;">WE ARE NOT RESPONSIBLE FOR ANY DAMAGE OR CONSEQUENCES!</p>
             </div>
 
-            <div style="background: #1a202c; padding: 20px; border-radius: 10px; margin: 20px 0;">
+            <div class="shimmer-box info">
                 <h3 style="color: #4299e1; margin-bottom: 15px;">What is Sh1mmer?</h3>
                 <p>Sh1mmer is an exploit that allows you to unenroll ChromeOS devices from enterprise management by downgrading to vulnerable firmware versions. It essentially gives you full administrative access to your Chromebook.</p>
             </div>
 
-            <div style="background: #1a202c; padding: 20px; border-radius: 10px; margin: 20px 0;">
+            <div class="shimmer-box info">
                 <h3 style="color: #4299e1; margin-bottom: 15px;">Requirements</h3>
                 <ul style="margin-left: 20px;">
                     <li>Vulnerable Chromebook model (check compatibility list)</li>
@@ -533,13 +683,13 @@
                 </ul>
             </div>
 
-            <div style="background: #1a202c; padding: 20px; border-radius: 10px; margin: 20px 0;">
+            <div class="shimmer-box info">
                 <h3 style="color: #4299e1; margin-bottom: 15px;">Compatible Devices</h3>
                 <p>Sh1mmer works on specific Chromebook models with vulnerable firmware. Check the official compatibility list before proceeding.</p>
                 <p style="color: #ffd700; margin-top: 10px;">Note: Newer Chromebooks (2023+) are generally patched against this exploit.</p>
             </div>
 
-            <div style="background: #1a202c; padding: 20px; border-radius: 10px; margin: 20px 0;">
+            <div class="shimmer-box info">
                 <h3 style="color: #4299e1; margin-bottom: 15px;">General Process</h3>
                 <ol style="margin-left: 20px; line-height: 1.8;">
                     <li>Identify your Chromebook model and verify compatibility</li>
@@ -551,7 +701,7 @@
                 </ol>
             </div>
 
-            <div style="background: #742a2a; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #ff6b6b;">
+            <div class="shimmer-box danger">
                 <h3 style="color: #ff6b6b; margin-bottom: 15px;">🚨 LEGAL DISCLAIMER</h3>
                 <p style="margin-bottom: 10px;">This information is provided for educational purposes only. By using this information, you agree that:</p>
                 <ul style="margin-left: 20px; color: #fed7d7;">
@@ -563,25 +713,25 @@
                 </ul>
             </div>
 
-            <div style="background: #1a202c; padding: 20px; border-radius: 10px; margin: 20px 0;">
+            <div class="shimmer-box info">
                 <h3 style="color: #4299e1; margin-bottom: 15px;">Resources & Tools</h3>
-                <div style="background: #2d3748; padding: 15px; border-radius: 8px; margin: 15px 0;">
-                    <h4 style="color: #63b3ed; margin-bottom: 10px;">🔧 Sh1mmer Builder Tool</h4>
+                <div class="shimmer-resource">
+                    <h4>🔧 Sh1mmer Builder Tool</h4>
                     <p style="margin-bottom: 10px;">Use this web-based tool to create your sh1mmer image:</p>
-                    <a href="https://darkn.vercel.app/sh1mmer/builder" target="_blank" style="color: #4fd1c7; text-decoration: underline;">darkn.vercel.app/sh1mmer/builder</a>
+                    <a href="https://darkn.vercel.app/sh1mmer/builder" target="_blank" rel="noopener noreferrer">darkn.vercel.app/sh1mmer/builder</a>
                     <p style="color: #ffd700; margin-top: 8px; font-size: 14px;">⚠️ Make sure to press "Legacy" option when using the builder!</p>
                 </div>
-                <div style="background: #2d3748; padding: 15px; border-radius: 8px; margin: 15px 0;">
-                    <h4 style="color: #63b3ed; margin-bottom: 10px;">📦 Pre-built Sh1ms Download</h4>
+                <div class="shimmer-resource">
+                    <h4>📦 Pre-built Sh1ms Download</h4>
                     <p style="margin-bottom: 10px;">Download pre-built sh1mmer images here:</p>
-                    <a href="https://dl.fanqyxl.net/ChromeOS/Raw%20Shims/" target="_blank" style="color: #4fd1c7; text-decoration: underline;">dl.fanqyxl.net/ChromeOS/Raw Shims/</a>
+                    <a href="https://dl.fanqyxl.net/ChromeOS/Raw%20Shims/" target="_blank" rel="noopener noreferrer">dl.fanqyxl.net/ChromeOS/Raw Shims/</a>
                     <p style="color: #ffd700; margin-top: 8px; font-size: 14px;">💡 Look for your specific Chromebook model in the list</p>
                 </div>
                 <p style="color: #ffd700; margin-top: 15px;">Remember: With great power comes great responsibility. Use this knowledge wisely!</p>
             </div>
 
             <div style="text-align: center; margin-top: 30px;">
-                <button onclick="closeShimmer()" style="background: #ff4757; color: white; border: none; padding: 15px 30px; border-radius: 5px; cursor: pointer; font-size: 16px;">I Understand - Close This Section</button>
+                <button type="button" class="shimmer-close-btn" onclick="closeShimmer()" style="padding: 15px 30px; font-size: 16px;">I Understand - Close This Section</button>
             </div>
         </div>
     </div>
@@ -591,7 +741,8 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
                 if (target) {
                     target.scrollIntoView({
                         behavior: 'smooth',
@@ -601,57 +752,47 @@
             });
         });
 
-        // Add scroll effect to header
-        window.addEventListener('scroll', () => {
+        // Add scroll effect to header with throttling
+        let ticking = false;
+        function updateHeader() {
             const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(102, 126, 234, 0.95)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.1)';
+            if (header) {
+                if (window.scrollY > 100) {
+                    header.style.background = 'rgba(102, 126, 234, 0.95)';
+                } else {
+                    header.style.background = 'rgba(255, 255, 255, 0.1)';
+                }
             }
-        });
-
-        // Performance meter animation - Fixed to prevent crashes
-        const meters = document.querySelectorAll('.performance-meter');
-        meters.forEach((meter, index) => {
-            const fill = meter.querySelector('.meter-fill');
-            if (fill) {
-                let width = 0;
-                const interval = setInterval(() => {
-                    if (width >= 85) {
-                        clearInterval(interval);
-                    } else {
-                        width += Math.random() * 2 + 1;
-                        fill.style.width = Math.min(width, 85) + '%';
-                    }
-                }, 150);
-            }
-        });
-
-        // Check for secret code - FIXED VERSION
-        const secretInput = document.getElementById('secretInput');
-        const sh1mmerSection = document.getElementById('sh1mmerSection');
-        
-        secretInput.addEventListener('input', function(e) {
-            if (e.target.value.toLowerCase() === 'sh1mmer') {
-                sh1mmerSection.style.display = 'block';
-                document.body.style.overflow = 'hidden';
-                e.target.value = '';
-            }
-        });
-
-        // Function to close shimmer section
-        function closeShimmer() {
-            document.getElementById('sh1mmerSection').style.display = 'none';
-            document.body.style.overflow = 'auto';
+            ticking = false;
         }
 
-        // Close on escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeShimmer();
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateHeader);
+                ticking = true;
             }
         });
-    </script>
-</body>
-</html>
+
+        // Performance meter animation - Fixed with error handling
+        function animatePerformanceMeters() {
+            const meters = document.querySelectorAll('.performance-meter');
+            meters.forEach((meter, index) => {
+                const fill = meter.querySelector('.meter-fill');
+                if (fill) {
+                    let width = 0;
+                    const targetWidth = 85;
+                    const step = () => {
+                        if (width < targetWidth) {
+                            width += Math.random() * 2 + 1;
+                            fill.style.width = Math.min(width, targetWidth) + '%';
+                            requestAnimationFrame(step);
+                        }
+                    };
+                    // Start animation after a delay based on index
+                    setTimeout(step, index * 200);
+                }
+            });
+        }
+
+        // Initialize performance meters when page loads
+        document.addEventListener('DOMContent
