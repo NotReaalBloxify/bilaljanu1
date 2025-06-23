@@ -306,55 +306,55 @@
         <section id="flags" class="section">
             <h2>⚡ Chrome Flags for Performance</h2>
             <div class="warning">
-                <strong>⚠️ Important:</strong> These flags can improve performance but may cause instability. Reset if you experience issues.
+                <strong>⚠️ CRITICAL WARNING:</strong> NOT ALL FLAGS WILL BE AVAILABLE ON YOUR CHROMEBOOK! Some flags may not exist or could crash Chrome entirely. Only enable flags that appear in your chrome://flags page. If Chrome crashes, restart and reset flags immediately.
             </div>
             
             <div class="grid">
                 <div class="card">
                     <h3>Graphics & Rendering</h3>
                     <div class="chrome-flag">
-                        <span class="flag-url">chrome://flags/#enable-gpu-rasterization</span>
-                        GPU Rasterization: Enabled
+                        <span class="flag-url">GPU Rasterization</span>
+                        Set to: Enabled
                     </div>
                     <div class="chrome-flag">
-                        <span class="flag-url">chrome://flags/#enable-zero-copy</span>
-                        Zero-copy rasterizer: Enabled
+                        <span class="flag-url">Zero-copy rasterizer</span>
+                        Set to: Enabled
                     </div>
                     <div class="chrome-flag">
-                        <span class="flag-url">chrome://flags/#ignore-gpu-blocklist</span>
-                        Override software rendering list: Enabled
+                        <span class="flag-url">Override software rendering list</span>
+                        Set to: Enabled
                     </div>
                 </div>
 
                 <div class="card">
                     <h3>Memory & CPU</h3>
                     <div class="chrome-flag">
-                        <span class="flag-url">chrome://flags/#max-tiles-for-interest-area</span>
-                        Max tiles for interest area: 512
+                        <span class="flag-url">Max tiles for interest area</span>
+                        Set to: 512
                     </div>
                     <div class="chrome-flag">
-                        <span class="flag-url">chrome://flags/#enable-experimental-web-platform-features</span>
-                        Experimental Web Platform features: Enabled
+                        <span class="flag-url">Experimental Web Platform features</span>
+                        Set to: Enabled
                     </div>
                     <div class="chrome-flag">
-                        <span class="flag-url">chrome://flags/#enable-quic</span>
-                        Experimental QUIC protocol: Enabled
+                        <span class="flag-url">Experimental QUIC protocol</span>
+                        Set to: Enabled
                     </div>
                 </div>
 
                 <div class="card">
                     <h3>Scrolling & Animation</h3>
                     <div class="chrome-flag">
-                        <span class="flag-url">chrome://flags/#smooth-scrolling</span>
-                        Smooth Scrolling: Enabled
+                        <span class="flag-url">Smooth Scrolling</span>
+                        Set to: Enabled
                     </div>
                     <div class="chrome-flag">
-                        <span class="flag-url">chrome://flags/#enable-experimental-canvas-features</span>
-                        Experimental canvas features: Enabled
+                        <span class="flag-url">Experimental canvas features</span>
+                        Set to: Enabled
                     </div>
                     <div class="chrome-flag">
-                        <span class="flag-url">chrome://flags/#disable-accelerated-2d-canvas</span>
-                        Accelerated 2D canvas: Disabled (if experiencing issues)
+                        <span class="flag-url">Accelerated 2D canvas</span>
+                        Set to: Disabled (if experiencing issues)
                     </div>
                 </div>
             </div>
@@ -366,12 +366,12 @@
                 <div class="card">
                     <h3>Browser Gaming Settings</h3>
                     <div class="chrome-flag">
-                        <span class="flag-url">chrome://flags/#enable-webgl2-compute-context</span>
-                        WebGL 2.0 Compute: Enabled
+                        <span class="flag-url">WebGL 2.0 Compute</span>
+                        Set to: Enabled
                     </div>
                     <div class="chrome-flag">
-                        <span class="flag-url">chrome://flags/#enable-unsafe-webgpu</span>
-                        Unsafe WebGPU: Enabled (for advanced graphics)
+                        <span class="flag-url">Unsafe WebGPU</span>
+                        Set to: Enabled (for advanced graphics)
                     </div>
                     <div class="tip">🎯 Perfect for browser games like Shell Shockers, Krunker.io, and 1v1.lol</div>
                 </div>
@@ -390,8 +390,8 @@
                 <div class="card">
                     <h3>FPS Monitoring</h3>
                     <div class="chrome-flag">
-                        <span class="flag-url">chrome://flags/#show-fps-counter</span>
-                        Show FPS counter: Enabled
+                        <span class="flag-url">Show FPS counter</span>
+                        Set to: Enabled (if available)
                     </div>
                     <p>Monitor your FPS in real-time to see performance improvements</p>
                     <div class="performance-meter">
@@ -455,13 +455,21 @@
                 <div class="card">
                     <h3>Emergency Reset</h3>
                     <div class="warning">
-                        If your Chromebook becomes unstable after applying these tweaks:
+                        <strong>🚨 EMERGENCY RESET INSTRUCTIONS:</strong><br>
+                        If your Chromebook becomes unstable or Chrome keeps crashing after applying these tweaks:
                     </div>
                     <div class="chrome-flag">
-                        <span class="flag-url">chrome://flags/#reset-all</span>
-                        Reset all flags to default
+                        <span class="flag-url">Method 1: Reset all flags</span>
+                        Go to chrome://flags and click "Reset all to default" at the top
                     </div>
-                    <p>Or use Ctrl + Alt + Shift + R for a full system reset</p>
+                    <div class="chrome-flag">
+                        <span class="flag-url">Method 2: System reset</span>
+                        Press Ctrl + Alt + Shift + R for a full system reset
+                    </div>
+                    <div class="chrome-flag">
+                        <span class="flag-url">Method 3: Safe mode</span>
+                        If Chrome won't start, hold Ctrl while clicking Chrome icon
+                    </div>
                 </div>
 
                 <div class="card">
@@ -509,19 +517,24 @@
             }
         });
 
-        // Performance meter animation
+        // Performance meter animation - Fixed to prevent crashes
         const meters = document.querySelectorAll('.performance-meter');
-        meters.forEach(meter => {
+        meters.forEach((meter, index) => {
             const fill = meter.querySelector('.meter-fill');
-            let width = 0;
-            const interval = setInterval(() => {
-                if (width >= 85) {
-                    clearInterval(interval);
-                } else {
-                    width += Math.random() * 3;
-                    fill.style.width = width + '%';
-                }
-            }, 100);
+            if (fill) {
+                let width = 0;
+                const interval = setInterval(() => {
+                    if (width >= 85) {
+                        clearInterval(interval);
+                    } else {
+                        width += Math.random() * 2 + 1; // More controlled animation
+                        fill.style.width = Math.min(width, 85) + '%';
+                    }
+                }, 150); // Slower animation
+                
+                // Clear interval after 10 seconds to prevent memory leaks
+                setTimeout(() => clearInterval(interval), 10000);
+            }
         });
     </script>
 </body>
