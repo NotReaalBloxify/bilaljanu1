@@ -564,9 +564,20 @@
             </div>
 
             <div style="background: #1a202c; padding: 20px; border-radius: 10px; margin: 20px 0;">
-                <h3 style="color: #4299e1; margin-bottom: 15px;">Resources</h3>
-                <p>For detailed instructions, compatibility lists, and downloads, search for "Sh1mmer ChromeOS exploit" on GitHub or security research forums.</p>
-                <p style="color: #ffd700; margin-top: 10px;">Remember: With great power comes great responsibility. Use this knowledge wisely!</p>
+                <h3 style="color: #4299e1; margin-bottom: 15px;">Resources & Tools</h3>
+                <div style="background: #2d3748; padding: 15px; border-radius: 8px; margin: 15px 0;">
+                    <h4 style="color: #63b3ed; margin-bottom: 10px;">🔧 Sh1mmer Builder Tool</h4>
+                    <p style="margin-bottom: 10px;">Use this web-based tool to create your sh1mmer image:</p>
+                    <a href="https://darkn.vercel.app/sh1mmer/builder" target="_blank" style="color: #4fd1c7; text-decoration: underline;">darkn.vercel.app/sh1mmer/builder</a>
+                    <p style="color: #ffd700; margin-top: 8px; font-size: 14px;">⚠️ Make sure to press "Legacy" option when using the builder!</p>
+                </div>
+                <div style="background: #2d3748; padding: 15px; border-radius: 8px; margin: 15px 0;">
+                    <h4 style="color: #63b3ed; margin-bottom: 10px;">📦 Pre-built Sh1ms Download</h4>
+                    <p style="margin-bottom: 10px;">Download pre-built sh1mmer images here:</p>
+                    <a href="https://dl.fanqyxl.net/ChromeOS/Raw%20Shims/" target="_blank" style="color: #4fd1c7; text-decoration: underline;">dl.fanqyxl.net/ChromeOS/Raw Shims/</a>
+                    <p style="color: #ffd700; margin-top: 8px; font-size: 14px;">💡 Look for your specific Chromebook model in the list</p>
+                </div>
+                <p style="color: #ffd700; margin-top: 15px;">Remember: With great power comes great responsibility. Use this knowledge wisely!</p>
             </div>
 
             <div style="text-align: center; margin-top: 30px;">
@@ -610,12 +621,14 @@
                     if (width >= 85) {
                         clearInterval(interval);
                     } else {
-                        width += Math.random() * 2 + 1; // More controlled animation
+                        width += Math.random() * 2 + 1;
                         fill.style.width = Math.min(width, 85) + '%';
                     }
-                }, 150); // Slower animation
-                
-                // Check for secret code
+                }, 150);
+            }
+        });
+
+        // Check for secret code - FIXED VERSION
         const secretInput = document.getElementById('secretInput');
         const sh1mmerSection = document.getElementById('sh1mmerSection');
         
